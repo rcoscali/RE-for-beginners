@@ -1,5 +1,5 @@
 my_strlen:
-; prologue de la fonction 
+; prologue de la fonction
 	sub	sp, sp, #32
 ; le premier argument (str) va §être stocké§ dans [sp,8]
 	str	x0, [sp,8]
@@ -25,7 +25,7 @@ my_strlen:
 	ldr	x0, [sp,8]
 ; calculer la §différence§
 	sub	x0, x1, x0
-; §décrémenter le resultat§ §%TODO: clarify§
+; §décrémenter le résultat§ §%TODO: clarify§
 	sub	w0, w0, #1
 ; §épilogue de la fonction§
 	add	sp, sp, 32
