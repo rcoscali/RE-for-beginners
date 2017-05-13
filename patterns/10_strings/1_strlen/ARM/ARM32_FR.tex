@@ -130,15 +130,24 @@ qui signife que 1 doit être ajouté à \Reg{1} après avoir chargé l'octet.
 Pour en lire plus à ce propos: \myref{ARM_postindex_vs_preindex}.
 
 %%Then you can see \CMP and \ac{BNE} in the body of the loop, these instructions continue looping until 0 is found in the string.
+Ensuite vous pouvez voir \CMP et \ac{BNE} dans le corps de la boucle, ces instructions
+continuent de boucler jusqu'à ce que 0 soit trouvé dans la chaîne.
 
 \myindex{ARM!\Instructions!MVNS}
 \myindex{x86!\Instructions!NOT}
 %%\TT{MVNS}\footnote{MoVe Not} (inverts all bits, like \NOT in x86) and \ADD instructions compute $eos - str - 1$.
+Les instructions \TT{MVNS}\footnote{MoVe Not} (inverse tous les bits, comme \NOT
+en x86) et \ADD calculent $eos - str - 1$.
 %%In fact, these two instructions compute $R0 = ~str + eos$, 
 %%which is effectively equivalent to what was in the source code, and why it is so, was already explained here
 ~(\myref{strlen_NOT_ADD}).
+En fait ces deux instructions calculent $R0 = ~str + eos$, qui est effectivement
+équivalent à ce qui est dans le code source, et la raison de ceci à déjà été expliquée
+ici ~(\myref{strlen_NOT_ADD}).
 
 %%Apparently, LLVM, just like GCC, concludes that this code can be shorter (or faster).
+Apparemment, LLVM, tout comme GCC, conclu que ce code peut être plus court (ou plus
+rapide).
 
 \mysubparagraph{\OptimizingKeilVI (\ARMMode)}
 
@@ -148,7 +157,14 @@ Pour en lire plus à ce propos: \myref{ARM_postindex_vs_preindex}.
 
 %%Almost the same as what we saw before, with the exception that the $str - eos - 1$ 
 %%expression can be computed not at the function's end, but right in the body of the loop.
+Presque la même chose que ce que nous avions vu avant, à l'exception que l'expression
+$str - eos - 1$ peut être calculée non pas à la fin de la fonciton, mais dans le
+corps de la boucle.
 %%The \TT{-EQ} suffix, as we may recall, implies that the instruction executes only if the operands in
 %%the \CMP that has been executed before were equal to each other.
 %%Thus, if \Reg{0} contains 0, both \TT{SUBEQ} instructions executes and result is left in the \Reg{0} register.
-
+Le suffixe \TT{-EQ}, comme nous devrions nous en souvenir, implique que l'instruction
+ne s'exécute que si les opérandes de la dernière instruction \CMP qui a été exécutée
+avant étaient égales.
+Ainsi, si \Reg{0} contient 0, les deux instructions \TT{SUBEQ} sont exécutées et
+le résultat est laissà dans le registre \Reg{0}.
